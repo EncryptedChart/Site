@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Your Website Is Probably Leaking Patient Data to TikTok and Meta. · The Encrypted Chart</title>
+<meta name="description" content="Bloomberg just confirmed every state-run health insurance exchange in America is doing it. The same tracking pixels sit on most practice websites. Here's the operational audit that closes the gap this week.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Your Website Is Probably Leaking Patient Data to TikTok and Meta.">
+<meta property="og:description" content="Bloomberg just confirmed every state-run health insurance exchange in America is doing it. The same tracking pixels sit on most practice websites. Here's the operational audit that closes the gap this week.">
+<meta property="og:url" content="https://www.encryptedchart.com/pixel-audit-tiktok-meta-leak">
+<meta property="og:site_name" content="The Encrypted Chart">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your Website Is Probably Leaking Patient Data to TikTok and Meta.">
+<meta name="twitter:description" content="Bloomberg just confirmed every state-run health insurance exchange in America is doing it. The same tracking pixels sit on most practice websites. Here's the operational audit that closes the gap this week.">
+
+<meta property="article:author" content="Brad Lieberman">
+<meta property="article:published_time" content="2026-05-16T21:00:00-04:00">
+<meta property="article:section" content="DIGITAL DEFENSE">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W6R2XWJGTP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-W6R2XWJGTP');
+</script>
+
+<!-- GA4 Custom Events: vault_click + track_select + read_progress -->
+<script>
+  document.addEventListener('click', function(event) {
+    var link = event.target.closest('a');
+    if (!link || !link.href) return;
+    if (link.href.indexOf('store.encryptedchart.com') !== -1) {
+      gtag('event', 'vault_click', {
+        'link_url': link.href,
+        'link_text': (link.innerText || link.textContent || '').slice(0, 80),
+        'page': window.location.pathname
+      });
+    }
+    if (link.dataset && link.dataset.track) {
+      gtag('event', 'track_select', {
+        'track': link.dataset.track,
+        'destination': link.href,
+        'from_post': window.location.pathname
+      });
+    }
+  });
+  (function() {
+    var fired = {};
+    var milestones = [25, 50, 75, 100];
+    window.addEventListener('scroll', function() {
+      var doc = document.documentElement;
+      var scrolled = (window.scrollY + window.innerHeight) / doc.scrollHeight * 100;
+      milestones.forEach(function(m) {
+        if (scrolled >= m && !fired[m]) {
+          fired[m] = true;
+          gtag('event', 'read_progress', { 'percent': m, 'page': window.location.pathname });
+        }
+      });
+    }, { passive: true });
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --ink: #1A1D29;
+    --ink-soft: #5B5F6B;
+    --rule: #E6E2D7;
+    --accent: #1B3A4B;
+    --accent-soft: #2E5060;
+    --gold: #A68B52;
+    --copper: #B87333;
+    --disclaim-bg: #F1EEE4;
+    --warm: #F6F3EA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 40px; }
+  .wrap-narrow { max-width: 720px; margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 700px) {
+    .wrap, .wrap-narrow { padding: 0 24px; }
+    body { font-size: 16px; }
+  }
+
+  .topbar {
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 0;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .topbar .row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+  .topbar .brand { color: var(--accent); font-weight: 600; }
+  .topbar .brand a { color: var(--accent); text-decoration: none; }
+  .topbar .nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin-left: 22px;
+    font-size: 12.5px;
+    letter-spacing: 0.16em;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+  }
+  .topbar .nav a:hover { color: var(--copper); border-bottom-color: var(--gold); }
+  @media (max-width: 600px) { .topbar .nav a { margin-left: 0; margin-right: 18px; } }
+
+  .article-header {
+    padding: 88px 0 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .article-kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  .article-h1 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(38px, 5.4vw, 60px);
+    line-height: 1.06;
+    letter-spacing: -0.018em;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .article-deck {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(20px, 2.4vw, 25px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-style: italic;
+    max-width: 640px;
+    margin-bottom: 36px;
+  }
+  .article-meta {
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .article-meta .dot { margin: 0 10px; color: var(--gold); }
+
+  .article-body {
+    padding: 56px 0 64px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .article-body p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18.5px;
+    line-height: 1.72;
+    color: var(--ink);
+    margin-bottom: 24px;
+    max-width: 640px;
+  }
+  .article-body p em {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 1.04em;
+  }
+  .article-body p strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .article-body a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 1px;
+  }
+  .article-body a:hover { color: var(--copper); }
+
+  .article-body h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(26px, 3vw, 32px);
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 56px 0 20px;
+    line-height: 1.22;
+  }
+  .article-body h3 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 36px 0 14px;
+    line-height: 1.3;
+  }
+
+  .drop-cap {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-style: normal;
+    font-weight: 500;
+    float: left;
+    font-size: 64px;
+    line-height: 0.92;
+    padding: 6px 12px 0 0;
+    color: var(--copper);
+  }
+
+  .pullquote {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(24px, 3vw, 30px);
+    line-height: 1.35;
+    color: var(--accent);
+    text-align: left;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding: 32px 0;
+    margin: 48px 0;
+    max-width: 640px;
+  }
+
+  .article-body blockquote {
+    border-left: 3px solid var(--gold);
+    padding: 4px 0 4px 22px;
+    margin: 32px 0;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.6;
+    max-width: 640px;
+  }
+
+  .footnotes {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    max-width: 640px;
+  }
+  .footnotes-title {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .footnotes ol {
+    counter-reset: fn-num;
+    margin: 0;
+    list-style: none;
+  }
+  .footnotes ol li {
+    counter-increment: fn-num;
+    padding: 0 0 10px 28px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .footnotes ol li::before {
+    content: counter(fn-num);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14px;
+    color: var(--copper);
+    font-weight: 500;
+    width: 22px;
+  }
+  .footnotes a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+
+  .fn-ref {
+    font-size: 0.7em;
+    vertical-align: super;
+    color: var(--copper);
+    text-decoration: none;
+    border-bottom: none !important;
+    padding: 0 2px;
+  }
+
+  .post-author {
+    padding: 56px 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+  }
+  .post-author .author-photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 30%;
+    border: 1px solid var(--gold);
+    margin-bottom: 18px;
+    display: block;
+  }
+  .post-author .kicker {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .post-author .author-name {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .post-author .author-creds {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .post-author p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-bottom: 12px;
+    max-width: 640px;
+  }
+  .post-author p:last-of-type { margin-bottom: 0; }
+
+  .post-cta-newsletter {
+    padding: 64px 0;
+    background: var(--warm);
+    border-bottom: 1px solid var(--rule);
+  }
+  .post-cta-newsletter .kicker {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .post-cta-newsletter h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.22;
+  }
+  .post-cta-newsletter p {
+    font-size: 16.5px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 640px;
+    line-height: 1.65;
+  }
+  .track-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+    max-width: 720px;
+  }
+  @media (max-width: 700px) { .track-row { grid-template-columns: 1fr 1fr; } }
+  .track-pill {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 18px 16px;
+    text-decoration: none;
+    color: var(--ink);
+    text-align: center;
+    transition: border-color 0.15s, transform 0.15s;
+    display: block;
+  }
+  .track-pill:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .track-pill .pill-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .track-pill .pill-name {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .post-cta-vault {
+    padding: 56px 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+  }
+  .post-cta-vault .kicker {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .post-cta-vault h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(24px, 2.8vw, 30px);
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.22;
+  }
+  .post-cta-vault p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #FAFAF7;
+    text-decoration: none;
+    padding: 15px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent-soft); }
+  .price-line {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+  }
+  .price-line strong { color: var(--ink); font-style: normal; font-weight: 500; }
+
+  .legal-min {
+    background: var(--disclaim-bg);
+    border-top: 1px solid var(--rule);
+    padding: 32px 0;
+    font-size: 13px;
+    color: #3a3d47;
+    line-height: 1.65;
+  }
+  .legal-min p { max-width: 720px; margin-bottom: 0; }
+
+  footer {
+    padding: 28px 0 44px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+  footer .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  footer a:hover { color: var(--copper); }
+
+  .clear { clear: both; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="row">
+      <span class="brand"><a href="https://www.encryptedchart.com">The Encrypted Chart</a></span>
+      <nav class="nav">
+        <a href="https://read.encryptedchart.com">Read</a>
+        <a href="https://www.encryptedchart.com#tracks">Tracks</a>
+        <a href="https://www.encryptedchart.com#vault">The Vault</a>
+        <a href="https://www.encryptedchart.com#about">About</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<header class="article-header">
+  <div class="wrap-narrow">
+    <div class="article-kicker">ISSUE NO. 04 · DIGITAL DEFENSE</div>
+    <h1 class="article-h1">Your Website Is Probably Leaking Patient Data to TikTok and Meta.</h1>
+    <p class="article-deck">Bloomberg just confirmed every state-run health insurance exchange in America is doing it. The same tracking pixels sit on most practice websites. Here's the operational audit that closes the gap this week.</p>
+    <div class="article-meta">
+      <span>By Brad Lieberman, JD (Retired), MSN, PMHNP</span>
+      <span class="dot">·</span>
+      <span>May 16, 2026</span>
+      <span class="dot">·</span>
+      <span>8 min read</span>
+    </div>
+  </div>
+</header>
+
+<article class="article-body">
+  <div class="wrap-narrow">
+
+    <!-- ARTICLE_BODY_START -->
+    <p>Open your practice website in a private browser tab. Navigate to your contact form. Right-click anywhere on the page, choose Inspect, and click the Network tab in the panel that opens. Reload the page. Now look at the URLs scrolling past — the outbound requests your browser is making. Filter for "facebook," "tiktok," "google," "snap," "linkedin," "doubleclick," or "googletagmanager." Count the matches.</p>
+
+<p>Every match is a tracking pixel sending information to that ad network's servers — what page the visitor is on, what they clicked, and depending on configuration, more.</p>
+
+<p>Last week Bloomberg News confirmed that nearly all twenty state-run health insurance exchanges in the United States, plus the District of Columbia, have those exact trackers embedded on applicant-facing pages. The Washington state exchange was sending applicants' sex and citizenship responses to TikTok. Virginia's premium estimator was sending ZIP codes to Meta. New York's marketplace was sharing pages visited during enrollment — including pages where applicants disclosed having incarcerated family members — with TikTok, Meta, Snap, and LinkedIn. More than seven million Americans bought health coverage for 2026 through these sites. Their personal information leaked to ad networks the entire time.</p>
+
+<p>The state exchanges didn't intend it. The trackers were installed by marketing teams, by contracted web vendors, by configuration choices made years earlier and never re-examined. Bloomberg reviewed thousands of enrollment pages with the privacy firm Feroot. In testing, a journalist's Facebook account was tied to visits across ten of the exchanges and could be retargeted with ads based on those visits. The leakage isn't theoretical — it's how the underlying ad infrastructure works by design.</p>
+
+<p>One important detail: Healthcare.gov, the federal exchange used by the other thirty states, does not embed these specific trackers. This is a state-level configuration problem, not a federal one. Which is exactly the situation your independent practice is in. There's no enterprise security team auditing your website. The configuration choices are yours, and they probably stopped being examined right after you stopped paying attention to the Facebook ad campaign that prompted the pixel install in the first place.</p>
+
+<p>Your practice site is the same problem in miniature.</p>
+
+<p>Most independent practitioners have a website that someone — a developer, an agency, a marketing consultant — set up sometime between 2019 and now. Somewhere along the way, that someone dropped in tracking pixels: a Meta Pixel for Facebook ads, a Google Ads conversion tag, maybe a TikTok pixel during a 2024 healthcare-adjacent campaign, possibly a LinkedIn Insight tag if you were recruiting clinicians. Each pixel was installed for a reasonable marketing purpose. None of them came with a written-down decision about which pages they could and could not fire on.</p>
+
+<p>The pixel doesn't care. It fires on every page it's deployed to. If your developer installed it via Google Tag Manager and left the "All Pages" trigger active, it fires on your homepage and on your patient intake form alike. If it fires on your intake form, it sends to Meta or Google or TikTok: the URL of the form (often containing "intake" or "new-patient"), the referrer (which page the visitor came from), any URL parameters (which may contain identifying tokens), and depending on configuration, the contents of form fields the visitor typed before submitting.</p>
+
+<p>The 2024 Texas district court ruling in <em>AHA v. Becerra</em> pulled HIPAA's regulatory hook out from under most of OCR's pixel-tracking enforcement appetite. That mattered. But it didn't make the underlying problem go away. And it didn't touch the parallel exposure that lives in state consumer health data laws — Washington's My Health My Data Act, Connecticut's Data Privacy Act, the under-construction New York Health Information Privacy Act — or in the still-active class action bar, where the plaintiff firms that filed dozens of pixel-tracking suits in 2023 and 2024 are still filing today under different statutes.</p>
+
+<p>The operational gap, in one sentence: most independent practices have tracking pixels installed that they do not know are firing, on pages they do not know are sensitive, sending data to companies they did not contract with for that purpose.</p>
+
+<p>That's not a HIPAA conclusion. That's an operational fact about how the modern marketing-tech stack works on small-business websites.</p>
+
+<p>The Vault's FTC Pixel Audit Walkthrough exists to close exactly that gap. It does five things, in order. First, it walks you through identifying every tracking pixel on your site — not just the ones you remember, the ones actually deployed. The walkthrough covers Google Tag Manager (where most pixels actually live, even if you think they live somewhere else), direct pixel installations in the page header, and pixels installed via plug-ins or third-party widgets (chat tools, online scheduling embeds, review platforms — all common pixel-carrier vectors). Second, the walkthrough has you map every patient-facing page on your site: intake forms, scheduling tools, contact forms, patient portal login links, telehealth entry points, "find a provider" tools, anywhere a patient identifies themselves or selects a service. Third, for each pixel × page combination, the walkthrough gives you configuration options — disable on patient pages via tag manager rules, restrict to first-party data only, remove entirely, or for cases where you legitimately need conversion tracking on a thank-you page, switch to server-side or privacy-preserving alternatives. Fourth, the walkthrough generates a documented audit you save: which pixels existed, which pages they fired on, which configurations you changed, when, and why. Fifth, it gives you a quarterly recurrence cadence so the audit doesn't decay the moment you switch ad platforms or hire a new web developer.</p>
+
+<p>This is the same protocol Brad runs in Operational Advisory Sessions when a practice owner says "I'm not sure what's on our site." The Vault version is self-serve.</p>
+
+<p>This week, three steps.</p>
+
+<p><strong>One.</strong> Tonight, do the network-inspector exercise on your contact form page (10 minutes). Note which pixels surprise you. Most practices will find at least one — but if yours doesn't, document that fact and move on.</p>
+
+<p>If you'd rather skip the dev-tools step, <a href="https://scan.apexvaultcompliance.com/">Apex Vault offers a free pixel scanner</a> for small and midsize healthcare practices. Paste your URL, get an on-screen report showing which trackers are firing on the page. <em>(Disclosure: Apex Vault is a separate company I founded.)</em></p>
+
+<p><strong>Two.</strong> This week, map your patient-facing pages and check each one the same way (30–60 minutes). Build a two-column list: page name, pixels fired. If your developer or web platform doesn't allow page-level pixel rules, that's information in itself — it means the audit choice is "remove the pixel entirely" rather than "disable on patient pages."</p>
+
+<p><strong>Three.</strong> Before next Monday, make the configuration changes and document them. If a plaintiff firm or state attorney general ever asks what your site was sending to Meta, the document is the answer.</p>
+
+<p>The Encrypted Chart Vault includes the FTC Pixel Audit Walkthrough — calibrated for independent practice, not enterprise ad ops. National edition $299. NY edition $349 adds SHIELD Act and state-specific addenda. Bloomberg confirmed last week what an audit would tell you about your own site. The audit is faster than waiting for the question to come from someone less friendly.</p>
+
+<p>Brad</p>
+    <!-- ARTICLE_BODY_END -->
+
+
+    <div class="footnotes">
+      <div class="footnotes-title">Footnotes</div>
+      <ol>
+        <!-- FOOTNOTES_START -->
+        <li id="fn1">Bloomberg News, "Meta, TikTok Are Sent Personal Data From Health Exchanges" (May 4, 2026): <a href="https://www.bloomberg.com/features/2026-healthcare-advertising-trackers-privacy/" target="_blank" rel="noopener noreferrer">bloomberg.com/features/2026-healthcare-advertising-trackers-privacy</a>.</li>
+<li id="fn2">Tech Brew, "US state health exchanges leaked customer data to Big Tech" (May 4, 2026): <a href="https://www.techbrew.com/stories/2026/05/04/state-health-insurance-data-big-tech" target="_blank" rel="noopener noreferrer">techbrew.com/stories/2026/05/04/state-health-insurance-data-big-tech</a>.</li>
+<li id="fn3">The Cyber Signal, "20 State Health Exchanges Leaked Citizenship Data to TikTok" (May 5, 2026): <a href="https://www.thecybersignal.com/state-health-exchanges-sent-citizenship-race-data-tiktok-meta-bloomberg-investigation/" target="_blank" rel="noopener noreferrer">thecybersignal.com/state-health-exchanges-sent-citizenship-race-data-tiktok-meta-bloomberg-investigation</a>.</li>
+<li id="fn4">American Hospital Association v. Becerra, Northern District of Texas (June 20, 2024) — court decision vacating portions of HHS-OCR's December 2022 guidance on online tracking technologies. State consumer health data laws (Washington MHMDA, Connecticut CTDPA) and class action filings remain active enforcement paths.</li>
+        <!-- FOOTNOTES_END -->
+
+      </ol>
+    </div>
+
+  </div>
+</article>
+
+<section class="post-author">
+  <div class="wrap-narrow">
+    <div class="kicker">About the Author</div>
+    <img src="/brad-lieberman.jpg" alt="Brad Lieberman" class="author-photo">
+    <div class="author-name">Brad Lieberman</div>
+    <div class="author-creds">JD (Retired) · MSN · PMHNP</div>
+    <p>Founder of <em>The Encrypted Chart</em> and Lieberman Consulting, LLC. A practicing psychiatric mental health nurse practitioner with a Juris Doctor (retired). The Encrypted Chart translates federal privacy regulations into the operational shields independent practices actually need.</p>
+    <p>Brad writes The Encrypted Chart from inside a working clinical practice. The dual-authority frame — JD-trained, clinically practicing — is the lens. The output is operational, not theoretical.</p>
+  </div>
+</section>
+
+<section class="post-cta-newsletter">
+  <div class="wrap">
+    <div class="kicker">Read More Like This</div>
+    <h2>Subscribe to the welcome series for your specialty.</h2>
+    <p>Twice-weekly briefings on the digital privacy traps eroding solo and small-group practice — and the pre-drafted shields that close them. Free. Choose your track.</p>
+    <div class="track-row">
+      <a class="track-pill" href="https://liebermancenter.com/therapist" data-track="therapist">
+        <div class="pill-eyebrow">Track 01</div>
+        <div class="pill-name">Therapists</div>
+      </a>
+      <a class="track-pill" href="https://liebermancenter.com/np" data-track="np">
+        <div class="pill-eyebrow">Track 02</div>
+        <div class="pill-name">Nurse Practitioners</div>
+      </a>
+      <a class="track-pill" href="https://liebermancenter.com/physician" data-track="physician">
+        <div class="pill-eyebrow">Track 03</div>
+        <div class="pill-name">Physicians</div>
+      </a>
+      <a class="track-pill" href="https://liebermancenter.com/practitioner" data-track="practitioner">
+        <div class="pill-eyebrow">Track 04</div>
+        <div class="pill-name">Allied Health</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="post-cta-vault">
+  <div class="wrap-narrow">
+    <div class="kicker">The Companion Toolkit</div>
+    <h2>The Private Practice Protection Vault.</h2>
+    <p>Forty-one pre-drafted operational documents for independent practice — including the BAA review checklist and pre-drafted BAA language for vendor negotiation referenced throughout this issue.</p>
+    <a class="btn-primary" href="https://store.encryptedchart.com/l/binder">Get the Vault</a>
+    <p class="price-line"><strong>$299 National Edition</strong> · <strong>$349 New York Edition</strong> (includes SHIELD Act and state-specific addenda).</p>
+  </div>
+</section>
+
+<section class="legal-min">
+  <div class="wrap">
+    <p><strong>Educational content only.</strong> The Encrypted Chart is published by Lieberman Consulting, LLC, a consulting firm — not a law firm. Brad Lieberman holds a Juris Doctor but does not actively practice law. Content is general education and operational guidance, not legal advice for your specific practice or jurisdiction. For legal interpretation specific to your situation, consult counsel licensed in your state.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div>&copy; 2026 Lieberman Consulting, LLC. All rights reserved.</div>
+      <div>New York · <a href="mailto:Brad@encryptedchart.com">Brad@encryptedchart.com</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
