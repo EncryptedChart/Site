@@ -1,0 +1,12 @@
+# robots.txt for encryptedchart.com — The Encrypted Chart
+# Permissive crawl. Internal template paths are blocked at the edge via Netlify _redirects.
+
+User-agent: *
+Allow: /
+
+# Defense in depth — these are also 404'd via Netlify _redirects
+Disallow: /pillar-template.html
+Disallow: /pillar-template
+
+# Canonical sitemap
+Sitemap: https://encryptedchart.com/sitemap.xml
