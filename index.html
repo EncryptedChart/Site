@@ -247,6 +247,64 @@
     padding-bottom: 1px;
   }
   .archive-link a:hover { color: var(--copper); }
+  .archive-list {
+    margin-top: 8px;
+    border-top: 1px solid var(--rule);
+  }
+  .archive-item {
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    gap: 28px;
+    padding: 26px 4px;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    align-items: baseline;
+    transition: background 0.15s;
+  }
+  .archive-item:hover {
+    background: var(--warm);
+  }
+  .archive-item .archive-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .archive-item .archive-issue {
+    display: block;
+    color: var(--copper);
+    margin-bottom: 4px;
+  }
+  .archive-item .archive-title {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .archive-item .archive-arrow {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .archive-item:hover .archive-title { color: var(--accent); }
+  .archive-item:hover .archive-arrow { color: var(--copper); }
+  @media (max-width: 700px) {
+    .archive-item {
+      grid-template-columns: 1fr;
+      gap: 6px;
+      padding: 22px 0;
+    }
+    .archive-item .archive-arrow { margin-top: 4px; }
+  }
+
 
   .tracks {
     display: grid;
@@ -502,7 +560,7 @@
     <div class="row">
       <span class="brand">The Encrypted Chart</span>
       <nav class="nav">
-        <a href="https://read.encryptedchart.com">Read</a>
+        <a href="#archive">Read</a>
         <a href="#tracks">Tracks</a>
         <a href="#vault">The Vault</a>
         <a href="#about">About</a>
@@ -535,8 +593,43 @@
       <span class="issue-card-cta">Read the issue →</span>
     </a>
     <!-- LATEST_ISSUE_CARD_END -->
+  </div>
+</section>
 
-    <p class="archive-link"><a href="https://read.encryptedchart.com">Browse all issues →</a></p>
+
+<section class="section" id="archive">
+  <div class="wrap">
+    <div class="kicker">The Archive</div>
+    <h2>Past issues.</h2>
+    <!-- PAST_ISSUES_LIST_START -->
+    <div class="archive-list">
+      <a class="archive-item" href="/ai-scribe-lawsuit-consent-recording">
+        <div class="archive-meta">
+          <span class="archive-issue">Issue No. 03</span>
+          May 12, 2026
+        </div>
+        <div class="archive-title">Sutter's AI Scribe Just Got Sued. You Use the Same Tool.</div>
+        <div class="archive-arrow">Read &rarr;</div>
+      </a>
+      <a class="archive-item" href="/baa-review-225k-ocr-settlement">
+        <div class="archive-meta">
+          <span class="archive-issue">Issue No. 02</span>
+          May 9, 2026
+        </div>
+        <div class="archive-title">When Your Billing Service Gets Hacked: A $225K Federal Wake-Up Call</div>
+        <div class="archive-arrow">Read &rarr;</div>
+      </a>
+      <a class="archive-item" href="/ai-scribes">
+        <div class="archive-meta">
+          <span class="archive-issue">Issue No. 01</span>
+          May 6, 2026
+        </div>
+        <div class="archive-title">Five Questions Hospital Compliance Officers Ask About AI Scribes &mdash; and Solo Practices Don't</div>
+        <div class="archive-arrow">Read &rarr;</div>
+      </a>
+    </div>
+    <!-- PAST_ISSUES_LIST_END -->
+    <p class="archive-link"><a href="https://read.encryptedchart.com">Browse the full Beehiiv archive &rarr;</a></p>
   </div>
 </section>
 
