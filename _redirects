@@ -1,0 +1,7 @@
+# Block public access to internal template files
+/pillar-template.html  /404  404!
+/pillar-template       /404  404!
+
+# Old test page slugs that may still be in search indexes
+/smoke-test-encryptedchart-deploy-skill  /404  404!
+/post-title-goes-here                    /404  404!
