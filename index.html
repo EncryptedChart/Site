@@ -3,12 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Encrypted Chart · Digital defense for the practices the industry forgot.</title>
-<meta name="description" content="A twice-weekly briefing for therapists, nurse practitioners, physicians, and allied health professionals in independent practice. Operational guidance from a JD (retired) and practicing PMHNP.">
+<title>The Encrypted Chart — Privacy and Compliance Education for Solo and Small-Group Healthcare Practice</title>
+<meta name="description" content="Operational privacy and compliance guidance for therapists, nurse practitioners, physicians, and allied health professionals in independent practice. Twice-weekly free newsletter from a practicing PMHNP with a JD (retired).">
+<link rel="canonical" href="https://www.encryptedchart.com/">
 <meta property="og:title" content="The Encrypted Chart">
-<meta property="og:description" content="Digital defense for the practices the industry forgot. Twice-weekly operational guidance for independent healthcare practices.">
+<meta property="og:description" content="Privacy and compliance guidance for solo and small-group healthcare practice. Twice-weekly. Free.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.encryptedchart.com">
+<meta property="og:image" content="https://www.encryptedchart.com/brad-lieberman.jpg">
+<meta property="og:site_name" content="The Encrypted Chart">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Encrypted Chart">
+<meta name="twitter:description" content="Privacy and compliance guidance for solo and small-group healthcare practice.">
+<meta name="twitter:image" content="https://www.encryptedchart.com/brad-lieberman.jpg">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.encryptedchart.com/#website",
+      "url": "https://www.encryptedchart.com/",
+      "name": "The Encrypted Chart",
+      "description": "Operational privacy and compliance guidance for solo and small-group healthcare practice.",
+      "publisher": { "@id": "https://www.encryptedchart.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.encryptedchart.com/#organization",
+      "name": "Lieberman Consulting, LLC",
+      "url": "https://www.encryptedchart.com/",
+      "founder": { "@id": "https://www.encryptedchart.com/#brad" },
+      "logo": "https://www.encryptedchart.com/brad-lieberman.jpg"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.encryptedchart.com/#brad",
+      "name": "Brad Lieberman",
+      "honorificSuffix": "JD (retired), MSN, PMHNP-BC",
+      "jobTitle": "Founder, The Encrypted Chart",
+      "worksFor": { "@id": "https://www.encryptedchart.com/#organization" },
+      "image": "https://www.encryptedchart.com/brad-lieberman.jpg",
+      "sameAs": [
+        "https://liebermancenter.com"
+      ]
+    }
+  ]
+}
+</script>
 
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6R2XWJGTP"></script>
@@ -362,6 +407,59 @@
     display: inline-block;
   }
 
+  /* Testimonial section — added 2026-05-21 */
+  .testimonial-feature {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .testimonial-feature .kicker {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .testimonial-quote {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(20px, 2.4vw, 24px);
+    line-height: 1.5;
+    color: var(--ink);
+    font-style: italic;
+    border-left: 3px solid var(--gold);
+    padding: 4px 0 4px 28px;
+    margin: 0 0 24px;
+    max-width: 700px;
+  }
+  .testimonial-quote::before {
+    content: "";
+    display: inline;
+  }
+  .testimonial-attribution {
+    padding-left: 31px;
+    max-width: 700px;
+  }
+  .testimonial-attribution .testimonial-name {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .testimonial-attribution .testimonial-creds {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  @media (max-width: 700px) {
+    .testimonial-quote { padding-left: 20px; }
+    .testimonial-attribution { padding-left: 23px; }
+  }
+
   .vault-feature {
     background: var(--warm);
     padding: 64px 0;
@@ -560,8 +658,8 @@
     <div class="row">
       <span class="brand">The Encrypted Chart</span>
       <nav class="nav">
+        <a href="#tracks">Subscribe</a>
         <a href="#archive">Read</a>
-        <a href="#tracks">Tracks</a>
         <a href="#vault">The Vault</a>
         <a href="#about">About</a>
       </nav>
@@ -575,6 +673,55 @@
     <h1>Digital defense for the practices the industry forgot.</h1>
     <p class="lede">Twice-weekly operational guidance on the invisible digital traps eroding solo and small-group practice — and the pre-drafted shields that close them. Written by a JD (retired) and practicing psychiatric mental health nurse practitioner.</p>
     <div class="meta">Free <span class="dot">·</span> Twice Weekly <span class="dot">·</span> Unsubscribe Anytime</div>
+  </div>
+</section>
+
+<section class="section" id="tracks">
+  <div class="wrap">
+    <div class="kicker">Choose Your Track</div>
+    <h2>Subscribe to the welcome series for your specialty.</h2>
+    <p>The Encrypted Chart publishes one main feed and four specialty welcome tracks — each a five-email series tuned to the operational risks specific to your discipline. Pick the closest match.</p>
+
+    <div class="tracks">
+      <a class="track-card" href="https://liebermancenter.com/therapist.html" data-track="therapist">
+        <div class="track-eyebrow">Track One</div>
+        <h3>For Therapists, Psychologists &amp; Counselors</h3>
+        <p>The post-BetterHelp landscape, the pixel trap on your booking page, and what your healthcare attorney didn't tell you about your intake form.</p>
+        <span class="track-cta">Start the welcome series →</span>
+      </a>
+
+      <a class="track-card" href="https://liebermancenter.com/np.html" data-track="np">
+        <div class="track-eyebrow">Track Two</div>
+        <h3>For Nurse Practitioners</h3>
+        <p>BAA gaps in prescribing platforms, cross-state telehealth privacy, the 1099 contractor PHI ownership question — built for the operational reality of independent NP practice.</p>
+        <span class="track-cta">Start the welcome series →</span>
+      </a>
+
+      <a class="track-card" href="https://liebermancenter.com/physician.html" data-track="physician">
+        <div class="track-eyebrow">Track Three</div>
+        <h3>For Physicians (MD / DO)</h3>
+        <p>EMR vendor BAA sprawl, AI scribe due diligence, and the privacy industrial complex's quiet effect on independent physician practices.</p>
+        <span class="track-cta">Start the welcome series →</span>
+      </a>
+
+      <a class="track-card" href="https://liebermancenter.com/practitioner.html" data-track="practitioner">
+        <div class="track-eyebrow">Track Four</div>
+        <h3>For Allied Health Practitioners</h3>
+        <p>Built for PTs, chiropractors, audiologists, OTs, and other independent allied health professionals — the digital exposure framework adapted to your model.</p>
+        <span class="track-cta">Start the welcome series →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial-feature">
+  <div class="wrap">
+    <div class="kicker">From a Reader</div>
+    <blockquote class="testimonial-quote">Encrypted Chart is an incredibly valuable tool. Over the past 10 years, I've tried out a variety of resources to learn more about security and compliance, and I've certainly learned some good tips along the way. However, Encrypted Chart really stood out to me given how clear and straightforward it is compared to anything else I've come across. You've created an extremely useful and accessible resource that will help providers maintain the highest standards of security, compliance, and trust while caring for our patients.</blockquote>
+    <div class="testimonial-attribution">
+      <div class="testimonial-name">Samantha Gaies, PhD</div>
+      <div class="testimonial-creds">Licensed Clinical Psychologist · New York, NY</div>
+    </div>
   </div>
 </section>
 
@@ -609,7 +756,7 @@
           May 16, 2026
         </div>
         <div class="archive-title">Your Website Is Probably Leaking Patient Data to TikTok and Meta.</div>
-        <div class="archive-arrow">Read &rarr;</div>
+        <div class="archive-arrow">Read →</div>
       </a>
       <a class="archive-item" href="/ai-scribe-lawsuit-consent-recording">
         <div class="archive-meta">
@@ -617,7 +764,7 @@
           May 12, 2026
         </div>
         <div class="archive-title">Sutter's AI Scribe Just Got Sued. You Use the Same Tool.</div>
-        <div class="archive-arrow">Read &rarr;</div>
+        <div class="archive-arrow">Read →</div>
       </a>
       <a class="archive-item" href="/baa-review-225k-ocr-settlement">
         <div class="archive-meta">
@@ -625,57 +772,19 @@
           May 9, 2026
         </div>
         <div class="archive-title">When Your Billing Service Gets Hacked: A $225K Federal Wake-Up Call</div>
-        <div class="archive-arrow">Read &rarr;</div>
+        <div class="archive-arrow">Read →</div>
       </a>
       <a class="archive-item" href="/ai-scribes">
         <div class="archive-meta">
           <span class="archive-issue">Issue No. 01</span>
           May 6, 2026
         </div>
-        <div class="archive-title">Five Questions Hospital Compliance Officers Ask About AI Scribes &mdash; and Solo Practices Don't</div>
-        <div class="archive-arrow">Read &rarr;</div>
+        <div class="archive-title">Five Questions Hospital Compliance Officers Ask About AI Scribes — and Solo Practices Don't</div>
+        <div class="archive-arrow">Read →</div>
       </a>
     </div>
     <!-- PAST_ISSUES_LIST_END -->
-    <p class="archive-link"><a href="https://read.encryptedchart.com">Browse the full Beehiiv archive &rarr;</a></p>
-  </div>
-</section>
-
-<section class="section" id="tracks">
-  <div class="wrap">
-    <div class="kicker">Choose Your Track</div>
-    <h2>Subscribe to the welcome series for your specialty.</h2>
-    <p>The Encrypted Chart publishes one main feed and four specialty welcome tracks — each a five-email series tuned to the operational risks specific to your discipline. Pick the closest match.</p>
-
-    <div class="tracks">
-      <a class="track-card" href="https://liebermancenter.com/therapist.html" data-track="therapist">
-        <div class="track-eyebrow">Track One</div>
-        <h3>For Therapists, Psychologists & Counselors</h3>
-        <p>The post-BetterHelp landscape, the pixel trap on your booking page, and what your healthcare attorney didn't tell you about your intake form.</p>
-        <span class="track-cta">Start the welcome series →</span>
-      </a>
-
-      <a class="track-card" href="https://liebermancenter.com/np.html" data-track="np">
-        <div class="track-eyebrow">Track Two</div>
-        <h3>For Nurse Practitioners</h3>
-        <p>BAA gaps in prescribing platforms, cross-state telehealth privacy, the 1099 contractor PHI ownership question — built for the operational reality of independent NP practice.</p>
-        <span class="track-cta">Start the welcome series →</span>
-      </a>
-
-      <a class="track-card" href="https://liebermancenter.com/physician.html" data-track="physician">
-        <div class="track-eyebrow">Track Three</div>
-        <h3>For Physicians (MD / DO)</h3>
-        <p>EMR vendor BAA sprawl, AI scribe due diligence, and the privacy industrial complex's quiet effect on independent physician practices.</p>
-        <span class="track-cta">Start the welcome series →</span>
-      </a>
-
-      <a class="track-card" href="https://liebermancenter.com/practitioner.html" data-track="practitioner">
-        <div class="track-eyebrow">Track Four</div>
-        <h3>For Allied Health Practitioners</h3>
-        <p>Built for PTs, chiropractors, audiologists, OTs, and other independent allied health professionals — the digital exposure framework adapted to your model.</p>
-        <span class="track-cta">Start the welcome series →</span>
-      </a>
-    </div>
+    <p class="archive-link"><a href="https://read.encryptedchart.com">Browse the full Beehiiv archive →</a></p>
   </div>
 </section>
 
@@ -747,7 +856,7 @@
 <footer>
   <div class="wrap">
     <div class="row">
-      <div>&copy; 2026 Lieberman Consulting, LLC. All rights reserved.</div>
+      <div>© 2026 Lieberman Consulting, LLC. All rights reserved.</div>
       <div>New York · <a href="mailto:Brad@encryptedchart.com">Brad@encryptedchart.com</a></div>
     </div>
   </div>
