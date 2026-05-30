@@ -455,6 +455,11 @@
     color: var(--ink-soft);
     font-weight: 500;
   }
+  .testimonial-item + .testimonial-item {
+    margin-top: 56px;
+    padding-top: 56px;
+    border-top: 1px solid var(--rule);
+  }
   @media (max-width: 700px) {
     .testimonial-quote { padding-left: 20px; }
     .testimonial-attribution { padding-left: 23px; }
@@ -716,11 +721,20 @@
 
 <section class="testimonial-feature">
   <div class="wrap">
-    <div class="kicker">From a Reader</div>
-    <blockquote class="testimonial-quote">Encrypted Chart is an incredibly valuable tool. Over the past 10 years, I've tried out a variety of resources to learn more about security and compliance, and I've certainly learned some good tips along the way. However, Encrypted Chart really stood out to me given how clear and straightforward it is compared to anything else I've come across. You've created an extremely useful and accessible resource that will help providers maintain the highest standards of security, compliance, and trust while caring for our patients.</blockquote>
-    <div class="testimonial-attribution">
-      <div class="testimonial-name">Samantha Gaies, PhD</div>
-      <div class="testimonial-creds">Licensed Clinical Psychologist · New York, NY</div>
+    <div class="kicker">From Readers</div>
+    <div class="testimonial-item">
+      <blockquote class="testimonial-quote">Encrypted Chart is an incredibly valuable tool. Over the past 10 years, I've tried out a variety of resources to learn more about security and compliance, and I've certainly learned some good tips along the way. However, Encrypted Chart really stood out to me given how clear and straightforward it is compared to anything else I've come across. You've created an extremely useful and accessible resource that will help providers maintain the highest standards of security, compliance, and trust while caring for our patients.</blockquote>
+      <div class="testimonial-attribution">
+        <div class="testimonial-name">Samantha Gaies, PhD</div>
+        <div class="testimonial-creds">Licensed Clinical Psychologist · New York, NY</div>
+      </div>
+    </div>
+    <div class="testimonial-item">
+      <blockquote class="testimonial-quote">People use templates from services like SimplePractice and assume they're airtight because that's how they're marketed. They're not. I was the listed Privacy Officer at my former, well-established group practice, and didn't think to add myself when I went solo. That's the kind of detail that's easy to forget when you switch environments. The Encrypted Chart Vault caught it on the very first document I audited, plus a few other nuances I needed to tighten.</blockquote>
+      <div class="testimonial-attribution">
+        <div class="testimonial-name">Annemarie Hardgrove, LCSW-R, CYT</div>
+        <div class="testimonial-creds">Former Co-Director of a Long Island Group Psychotherapy Practice; Now in Solo Practice</div>
+      </div>
     </div>
   </div>
 </section>
