@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Your Vendor's Breach Just Became Your Lawsuit. · The Encrypted Chart</title>
+<meta name="description" content="A federal court in Chicago ruled last week that patients can sue a healthcare provider over a vendor's data breach. The diligence defense — "they were reputable, they had certifications, I trusted them" — just got materially narrower.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Your Vendor's Breach Just Became Your Lawsuit.">
+<meta property="og:description" content="A federal court in Chicago ruled last week that patients can sue a healthcare provider over a vendor's data breach. The diligence defense — "they were reputable, they had certifications, I trusted them" — just got materially narrower.">
+<meta property="og:url" content="https://www.encryptedchart.com/vendor-breach-your-lawsuit">
+<meta property="og:site_name" content="The Encrypted Chart">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your Vendor's Breach Just Became Your Lawsuit.">
+<meta name="twitter:description" content="A federal court in Chicago ruled last week that patients can sue a healthcare provider over a vendor's data breach. The diligence defense — "they were reputable, they had certifications, I trusted them" — just got materially narrower.">
+
+<meta property="article:author" content="Brad Lieberman">
+<meta property="article:published_time" content="2026-06-02T21:00:00-04:00">
+<meta property="article:section" content="DIGITAL DEFENSE">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W6R2XWJGTP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-W6R2XWJGTP');
+</script>
+
+<!-- GA4 Custom Events: vault_click + track_select + read_progress -->
+<script>
+  document.addEventListener('click', function(event) {
+    var link = event.target.closest('a');
+    if (!link || !link.href) return;
+    if (link.href.indexOf('store.encryptedchart.com') !== -1) {
+      gtag('event', 'vault_click', {
+        'link_url': link.href,
+        'link_text': (link.innerText || link.textContent || '').slice(0, 80),
+        'page': window.location.pathname
+      });
+    }
+    if (link.dataset && link.dataset.track) {
+      gtag('event', 'track_select', {
+        'track': link.dataset.track,
+        'destination': link.href,
+        'from_post': window.location.pathname
+      });
+    }
+  });
+  (function() {
+    var fired = {};
+    var milestones = [25, 50, 75, 100];
+    window.addEventListener('scroll', function() {
+      var doc = document.documentElement;
+      var scrolled = (window.scrollY + window.innerHeight) / doc.scrollHeight * 100;
+      milestones.forEach(function(m) {
+        if (scrolled >= m && !fired[m]) {
+          fired[m] = true;
+          gtag('event', 'read_progress', { 'percent': m, 'page': window.location.pathname });
+        }
+      });
+    }, { passive: true });
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --ink: #1A1D29;
+    --ink-soft: #5B5F6B;
+    --rule: #E6E2D7;
+    --accent: #1B3A4B;
+    --accent-soft: #2E5060;
+    --gold: #A68B52;
+    --copper: #B87333;
+    --disclaim-bg: #F1EEE4;
+    --warm: #F6F3EA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 40px; }
+  .wrap-narrow { max-width: 720px; margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 700px) {
+    .wrap, .wrap-narrow { padding: 0 24px; }
+    body { font-size: 16px; }
+  }
+
+  .topbar {
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 0;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .topbar .row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+  .topbar .brand { color: var(--accent); font-weight: 600; }
+  .topbar .brand a { color: var(--accent); text-decoration: none; }
+  .topbar .nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    margin-left: 22px;
+    font-size: 12.5px;
+    letter-spacing: 0.16em;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+  }
+  .topbar .nav a:hover { color: var(--copper); border-bottom-color: var(--gold); }
+  @media (max-width: 600px) { .topbar .nav a { margin-left: 0; margin-right: 18px; } }
+
+  .article-header {
+    padding: 88px 0 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .article-kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  .article-h1 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(38px, 5.4vw, 60px);
+    line-height: 1.06;
+    letter-spacing: -0.018em;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .article-deck {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(20px, 2.4vw, 25px);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-style: italic;
+    max-width: 640px;
+    margin-bottom: 36px;
+  }
+  .article-meta {
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .article-meta .dot { margin: 0 10px; color: var(--gold); }
+
+  .article-body {
+    padding: 56px 0 64px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .article-body p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18.5px;
+    line-height: 1.72;
+    color: var(--ink);
+    margin-bottom: 24px;
+    max-width: 640px;
+  }
+  .article-body p em {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 1.04em;
+  }
+  .article-body p strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .article-body a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 1px;
+  }
+  .article-body a:hover { color: var(--copper); }
+
+  .article-body h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(26px, 3vw, 32px);
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 56px 0 20px;
+    line-height: 1.22;
+  }
+  .article-body h3 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 36px 0 14px;
+    line-height: 1.3;
+  }
+
+  .drop-cap {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-style: normal;
+    font-weight: 500;
+    float: left;
+    font-size: 64px;
+    line-height: 0.92;
+    padding: 6px 12px 0 0;
+    color: var(--copper);
+  }
+
+  .pullquote {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(24px, 3vw, 30px);
+    line-height: 1.35;
+    color: var(--accent);
+    text-align: left;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding: 32px 0;
+    margin: 48px 0;
+    max-width: 640px;
+  }
+
+  .article-body blockquote {
+    border-left: 3px solid var(--gold);
+    padding: 4px 0 4px 22px;
+    margin: 32px 0;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.6;
+    max-width: 640px;
+  }
+
+  .article-body ul,
+  .article-body ol {
+    font-family: 'Inter', sans-serif;
+    font-size: 18.5px;
+    line-height: 1.72;
+    color: var(--ink);
+    margin: 0 0 24px 0;
+    padding-left: 28px;
+    max-width: 640px;
+  }
+
+  .article-body ul li,
+  .article-body ol li {
+    margin-bottom: 10px;
+  }
+
+  .article-body ul li:last-child,
+  .article-body ol li:last-child {
+    margin-bottom: 0;
+  }
+
+  .footnotes {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    max-width: 640px;
+  }
+  .footnotes-title {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .footnotes ol {
+    counter-reset: fn-num;
+    margin: 0;
+    list-style: none;
+  }
+  .footnotes ol li {
+    counter-increment: fn-num;
+    padding: 0 0 10px 28px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .footnotes ol li::before {
+    content: counter(fn-num);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 14px;
+    color: var(--copper);
+    font-weight: 500;
+    width: 22px;
+  }
+  .footnotes a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+
+  .fn-ref {
+    font-size: 0.7em;
+    vertical-align: super;
+    color: var(--copper);
+    text-decoration: none;
+    border-bottom: none !important;
+    padding: 0 2px;
+  }
+
+  .post-author {
+    padding: 56px 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+  }
+  .post-author .author-photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 30%;
+    border: 1px solid var(--gold);
+    margin-bottom: 18px;
+    display: block;
+  }
+  .post-author .kicker {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .post-author .author-name {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .post-author .author-creds {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .post-author p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-bottom: 12px;
+    max-width: 640px;
+  }
+  .post-author p:last-of-type { margin-bottom: 0; }
+
+  .post-cta-newsletter {
+    padding: 64px 0;
+    background: var(--warm);
+    border-bottom: 1px solid var(--rule);
+  }
+  .post-cta-newsletter .kicker {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .post-cta-newsletter h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.22;
+  }
+  .post-cta-newsletter p {
+    font-size: 16.5px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 640px;
+    line-height: 1.65;
+  }
+  .track-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+    max-width: 720px;
+  }
+  @media (max-width: 700px) { .track-row { grid-template-columns: 1fr 1fr; } }
+  .track-pill {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 18px 16px;
+    text-decoration: none;
+    color: var(--ink);
+    text-align: center;
+    transition: border-color 0.15s, transform 0.15s;
+    display: block;
+  }
+  .track-pill:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .track-pill .pill-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .track-pill .pill-name {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .post-cta-vault {
+    padding: 56px 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+  }
+  .post-cta-vault .kicker {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .post-cta-vault h2 {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(24px, 2.8vw, 30px);
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.22;
+  }
+  .post-cta-vault p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #FAFAF7;
+    text-decoration: none;
+    padding: 15px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent-soft); }
+  .price-line {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+  }
+  .price-line strong { color: var(--ink); font-style: normal; font-weight: 500; }
+
+  .legal-min {
+    background: var(--disclaim-bg);
+    border-top: 1px solid var(--rule);
+    padding: 32px 0;
+    font-size: 13px;
+    color: #3a3d47;
+    line-height: 1.65;
+  }
+  .legal-min p { max-width: 720px; margin-bottom: 0; }
+
+  footer {
+    padding: 28px 0 44px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+  footer .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  footer a:hover { color: var(--copper); }
+
+  .clear { clear: both; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="row">
+      <span class="brand"><a href="https://www.encryptedchart.com">The Encrypted Chart</a></span>
+      <nav class="nav">
+        <a href="https://read.encryptedchart.com">Read</a>
+        <a href="https://www.encryptedchart.com#tracks">Tracks</a>
+        <a href="https://www.encryptedchart.com#vault">The Vault</a>
+        <a href="https://www.encryptedchart.com#about">About</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<header class="article-header">
+  <div class="wrap-narrow">
+    <div class="article-kicker">ISSUE NO. 09 · DIGITAL DEFENSE</div>
+    <h1 class="article-h1">Your Vendor's Breach Just Became Your Lawsuit.</h1>
+    <p class="article-deck">A federal court in Chicago ruled last week that patients can sue a healthcare provider over a vendor's data breach. The diligence defense — "they were reputable, they had certifications, I trusted them" — just got materially narrower.</p>
+    <div class="article-meta">
+      <span>By Brad Lieberman, JD (Retired), MSN, PMHNP</span>
+      <span class="dot">·</span>
+      <span>June 2, 2026</span>
+      <span class="dot">·</span>
+      <span>7 min read</span>
+    </div>
+  </div>
+</header>
+
+<article class="article-body">
+  <div class="wrap-narrow">
+
+    <!-- ARTICLE_BODY_START -->
+    <p>You ran the diligence three years ago when you signed up your records vendor. You looked at their certifications. You signed the agreement they sent. You moved on.</p>
+
+<p>Last year, they got breached. They sent you the notification. You sent the right letters to your patients. The cycle closed. You went back to seeing patients.</p>
+
+<p>Last week, a federal judge in Chicago opened a door you thought was closed. Patients of the practice can sue the practice &mdash; not the vendor &mdash; for what the vendor lost.</p>
+
+<h2>What the ruling actually said</h2>
+
+<p>The case is Bernardino v. HAH Group Holding.<a href="#fn1" class="fn-ref">[1]</a> Two patients of Help at Home &mdash; an Illinois home-care provider &mdash; sued the provider over a 2024 breach at one of its vendors. The vendor had lost personal and medical information for thousands of patients. The vendor sent the breach notification. Help at Home sent the patient letters. The case looked closed.</p>
+
+<p>The patients sued anyway. Help at Home asked the court to throw the lawsuit out &mdash; they pointed at the vendor, said "that was their problem, not ours."</p>
+
+<p>On May 28, the judge declined. The patients can sue Help at Home. The risk of identity theft from the leaked data was enough exposure to keep the case alive. One of the two patients also had immediate damages &mdash; fraudulent credit card charges traceable to the breach.</p>
+
+<p>The judge didn't say Help at Home is liable. The judge said the patients get to <em>prove</em> Help at Home is liable. In a courtroom. With discovery. With depositions of whoever at Help at Home was responsible for that vendor relationship.</p>
+
+<p>That's the door that just opened. The plaintiff bar in Illinois will walk through it. The plaintiff bars in other states have been waiting for one of these rulings to land somewhere.</p>
+
+<h2>The diligence defense just got narrower</h2>
+
+<p>The defense most practitioners would reach for is the obvious one: <em>I did my due diligence. The vendor had certifications. They had references. The breach was their failure, not mine.</em></p>
+
+<p>Three years ago, that defense kept these lawsuits from going anywhere. Today, the court will say: fine, prove the diligence. Show me what you did.</p>
+
+<p>That's where most small practices come apart. The vendor contract is the vendor's standard template &mdash; accepted as-is, never marked up, often never actually read past page two. The SOC 2 report was glanced at, never re-checked when it expired. The breach notification window in the contract says "without unreasonable delay," which the vendor's lawyer will define as sixty days. There's no insurance requirement. There's no indemnification &mdash; or there is, but it caps at the fees you paid the vendor in the last twelve months, which doesn't cover a single defense attorney's billable week.</p>
+
+<p>The court didn't ask whether you trust your vendor. The court asked what your contract requires of them when something goes wrong.</p>
+
+<h2>What to look for when you read a vendor contract</h2>
+
+<p>Five things to check in any vendor agreement, in plain language.</p>
+
+<p><strong>1. Does it say what data the vendor gets?</strong> Names? Dates of birth? Diagnoses? Insurance numbers? If you can't find a paragraph listing the specific categories, you don't have an agreement &mdash; you have a marketing brochure.</p>
+
+<p><strong>2. How fast do they have to tell you when something goes wrong?</strong> The default in most agreements is "without unreasonable delay." That means whatever the vendor's lawyer says it means &mdash; often sixty days, sometimes longer. You want a number measured in days. Five days. Ten days. Whatever works for your practice. Just a number.</p>
+
+<p><strong>3. What does the indemnification clause actually say?</strong> This is the question most small practices skip because they assume the answer is "they'll cover everything." It's not. The indemnification clause usually caps the vendor's liability at the fees you paid them in the last twelve months &mdash; a number that won't cover a single defense attorney's billable week, let alone a class-action settlement.</p>
+
+<p>You probably can't get a major vendor to take the cap off entirely. They won't sign it. But you have three smaller asks that are realistic at renewal:</p>
+
+<ul>
+<li><strong>Move the cap from 1x annual fees to 2x or 3x.</strong> Some vendors will agree if you push.</li>
+<li><strong>Get an explicit carve-out for gross negligence and willful misconduct.</strong> Those should NOT be capped, regardless of what the cap is on routine liability. Reputable vendors usually have this language already; check if yours does.</li>
+<li><strong>Get your practice named as an additional insured on the vendor's cyber-liability policy</strong> (which is item 4 below). When you're a covered party on their insurance, the cap matters less because the insurance pays before the indemnification cap kicks in.</li>
+</ul>
+
+<p>And carry your own cyber-liability insurance to bridge whatever the vendor doesn't cover. Your policy + their policy is the actual coverage stack, not whatever the indemnification clause says by itself.</p>
+
+<p><strong>4. Do they have cyber-liability insurance?</strong> Most legit vendors do. Most small-practice contracts don't require it. You want a minimum coverage limit (a million dollars is the typical floor for vendors holding health data), your practice named as an additional insured, and proof every year at renewal.</p>
+
+<p><strong>5. Can you audit them?</strong> You probably won't. But the right to audit is what makes the vendor actually take their security posture seriously. Without that clause, you have no leverage when something looks off.</p>
+
+<h2>Three things to do this week</h2>
+
+<p>One. Find the contract drawer. Pull the agreements for your three biggest vendors &mdash; the ones that hold the most patient data. For most practices that's your records system, your billing service, and now your AI scribe. Read each one. Look for the five things above. Mark the page numbers where they fall short.</p>
+
+<p>Two. Email each of those vendors and ask for their current SOC 2 report or equivalent. Just say "we're updating our vendor risk file, can you send us your current security attestation?" Many will send it. Some won't. The ones who refuse to send their security attestation are usually the same ones who'll be slowest to indemnify you when something goes wrong.</p>
+
+<p>Three. Identify which of your vendor agreements were signed more than three years ago. Anything older than that was almost certainly drafted before the current wave of healthcare class actions established what courts now look for. Those contracts need updating at the next renewal, or sooner if the vendor will negotiate.</p>
+
+<p>The court didn't say you have to renegotiate every vendor contract this week. It said the next time a vendor of yours gets breached, your patients have a door to sue you through. The door is open. The diligence you do this month is what determines whether you survive what comes through it.</p>
+
+<table cellpadding="0" cellspacing="0" border="0" style="background-color: #F6F3EA; border-collapse: collapse; margin: 32px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; width: 100%;">
+<tr>
+<td style="padding: 24px 28px; border-left: 3px solid #B87333;">
+<div style="font-family: 'EB Garamond', Georgia, serif; font-size: 19px; color: #1B3A4B; margin-bottom: 12px; line-height: 1.3; font-weight: 500;">The vendor review checklist for the five elements your agreement needs to do.</div>
+<div style="font-size: 15px; color: #5B5F6B; line-height: 1.6; margin-bottom: 14px;">The Encrypted Chart Vault includes the BAA review checklist plus pre-drafted BAA language calibrated for independent practice. Run any vendor contract through it in twenty minutes. National edition $299. New York edition $349 (adds SHIELD Act and state-specific addenda).</div>
+<a href="https://store.encryptedchart.com/l/binder?utm_source=beehiiv&amp;utm_medium=email&amp;utm_campaign=issue-09&amp;utm_content=body-vault" style="color: #1B3A4B; border-bottom: 1px solid #A68B52; padding-bottom: 2px; font-style: italic; font-family: 'EB Garamond', Georgia, serif; font-size: 16px; text-decoration: none;">Get the Vault &rarr;</a>
+</td>
+</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; line-height: 1.4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+<tr><td style="padding: 0;">With security,</td></tr>
+<tr><td style="padding: 0 0 14px 0;">Brad</td></tr>
+<tr><td style="padding: 0;">Brad Lieberman, JD (retired), MSN, PMHNP-BC</td></tr>
+<tr><td style="padding: 0;">Founder, The Encrypted Chart</td></tr>
+<tr><td style="padding: 0;"><a href="https://www.encryptedchart.com?utm_source=beehiiv&amp;utm_medium=email&amp;utm_campaign=issue-09&amp;utm_content=signature-website">www.encryptedchart.com</a> &middot; Vault: <a href="https://store.encryptedchart.com/l/binder?utm_source=beehiiv&amp;utm_medium=email&amp;utm_campaign=issue-09&amp;utm_content=signature-vault">store.encryptedchart.com/l/binder</a></td></tr>
+<tr><td style="padding: 0;">Brad@encryptedchart.com</td></tr>
+</table>
+    <!-- ARTICLE_BODY_END -->
+
+
+    <div class="footnotes">
+      <div class="footnotes-title">Footnotes</div>
+      <ol>
+        <!-- FOOTNOTES_START -->
+        <li id="fn1">Bernardino v. HAH Group Holding LLC, No. 1:24-cv-07594, U.S. District Court for the Northern District of Illinois, decided May 28, 2026. Case analysis: <a href="https://databreachtimes.com/legal-news/help-at-home-must-face-core-negligence-claims-over-patient-data-breach/">The Data Breach Times</a>.</li>
+        <li id="fn2">HIPAA Business Associate Agreement provisions, 45 CFR &sect; 164.504(e). <a href="https://www.hhs.gov/hipaa/for-professionals/covered-entities/sample-business-associate-agreement-provisions/index.html">HHS Office for Civil Rights sample BAA provisions</a>.</li>
+        <li id="fn3">HIPAA Breach Notification Rule, 45 CFR &sect;&sect; 164.400-414. <a href="https://www.hhs.gov/hipaa/for-professionals/breach-notification/index.html">HHS Office for Civil Rights guidance</a>.</li>
+        <!-- FOOTNOTES_END -->
+
+      </ol>
+    </div>
+
+  </div>
+</article>
+
+<section class="post-author">
+  <div class="wrap-narrow">
+    <div class="kicker">About the Author</div>
+    <img src="/brad-lieberman.jpg" alt="Brad Lieberman" class="author-photo">
+    <div class="author-name">Brad Lieberman</div>
+    <div class="author-creds">JD (Retired) · MSN · PMHNP</div>
+    <p>Founder of <em>The Encrypted Chart</em> and Lieberman Consulting, LLC. A practicing psychiatric mental health nurse practitioner with a Juris Doctor (retired). The Encrypted Chart translates federal privacy regulations into the operational shields independent practices actually need.</p>
+    <p>Brad writes The Encrypted Chart from inside a working clinical practice. The dual-authority frame — JD-trained, clinically practicing — is the lens. The output is operational, not theoretical.</p>
+  </div>
+</section>
+
+<section class="post-cta-newsletter">
+  <div class="wrap">
+    <div class="kicker">Read More Like This</div>
+    <h2>Subscribe to the welcome series for your specialty.</h2>
+    <p>Twice-weekly briefings on the digital privacy traps eroding solo and small-group practice — and the pre-drafted shields that close them. Free. Choose your track.</p>
+    <div class="track-row">
+      <a class="track-pill" href="https://liebermancenter.com/therapist" data-track="therapist">
+        <div class="pill-eyebrow">Track 01</div>
+        <div class="pill-name">Therapists</div>
+      </a>
+      <a class="track-pill" href="https://liebermancenter.com/np" data-track="np">
+        <div class="pill-eyebrow">Track 02</div>
+        <div class="pill-name">Nurse Practitioners</div>
+      </a>
+      <a class="track-pill" href="https://liebermancenter.com/physician" data-track="physician">
+        <div class="pill-eyebrow">Track 03</div>
+        <div class="pill-name">Physicians</div>
+      </a>
+      <a class="track-pill" href="https://liebermancenter.com/practitioner" data-track="practitioner">
+        <div class="pill-eyebrow">Track 04</div>
+        <div class="pill-name">Allied Health</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="post-cta-vault">
+  <div class="wrap-narrow">
+    <div class="kicker">The Companion Toolkit</div>
+    <h2>The Private Practice Protection Vault.</h2>
+    <p>Forty-one pre-drafted operational documents for independent practice — including the BAA review checklist and pre-drafted BAA language for vendor negotiation referenced throughout this issue.</p>
+    <a class="btn-primary" href="https://store.encryptedchart.com/l/binder">Get the Vault</a>
+    <p class="price-line"><strong>$299 National Edition</strong> · <strong>$349 New York Edition</strong> (includes SHIELD Act and state-specific addenda).</p>
+  </div>
+</section>
+
+<section class="legal-min">
+  <div class="wrap">
+    <p><strong>Educational content only.</strong> The Encrypted Chart is published by Lieberman Consulting, LLC, a consulting firm — not a law firm. Brad Lieberman holds a Juris Doctor but does not actively practice law. Content is general education and operational guidance, not legal advice for your specific practice or jurisdiction. For legal interpretation specific to your situation, consult counsel licensed in your state.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div>&copy; 2026 Lieberman Consulting, LLC. All rights reserved.</div>
+      <div>New York · <a href="mailto:Brad@encryptedchart.com">Brad@encryptedchart.com</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
