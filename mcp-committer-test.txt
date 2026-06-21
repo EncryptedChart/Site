@@ -1,0 +1,1 @@
+Throwaway test to inspect committer identity stamped by the GitHub MCP. Safe to delete this branch.
