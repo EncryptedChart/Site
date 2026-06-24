@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       issue_file:
-        description: 'Path to the issue JSON (e.g. issues/12.json)'
+        description: 'Path to the issue JSON (e.g. issues/13.json)'
         required: true
 
 permissions:
@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -30,9 +32,9 @@ jobs:
           if [ -n "${{ github.event.inputs.issue_file }}" ]; then
             FILE="${{ github.event.inputs.issue_file }}"
           else
-            FILE=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- 'issues/*.json' | tail -n1)
+            FILE=$(ls issues/*.json | sort -V | tail -n1)
           fi
-          if [ -z "$FILE" ]; then echo "No issue JSON found in this change."; exit 1; fi
+          if [ -z "$FILE" ] || [ ! -f "$FILE" ]; then echo "No issue JSON found."; exit 1; fi
           echo "file=$FILE" >> "$GITHUB_OUTPUT"
           echo "Building $FILE"
 
@@ -51,4 +53,4 @@ jobs:
           ISSUE=$(node -e "process.stdout.write(String(require('./'+process.argv[1]).issue_number))" "${{ steps.pick.outputs.file }}")
           TITLE=$(node -e "process.stdout.write(require('./'+process.argv[1]).title.slice(0,72))" "${{ steps.pick.outputs.file }}")
           git commit -m "Issue No. ${ISSUE}: ${TITLE}"
-          git push
+          git push origin HEAD:main
